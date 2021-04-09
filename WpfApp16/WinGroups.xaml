@@ -1,0 +1,38 @@
+﻿<Page x:Class="WpfApp16.WinGroups"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp16"
+        mc:Ignorable="d"
+        Title="WinGroups" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Список групп"/>
+        <TextBlock Text="Редактирование группы" Grid.Column="1"/>
+        <ListBox Grid.Row="1" ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedGroup}" DisplayMemberPath="Number"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text=" Номер группы"/>
+            <TextBox Text="{Binding SelectedGroup.Number}" />
+            <TextBlock Text="Специальность группы"/>
+            <ComboBox ItemsSource="{Binding Specials }"
+                      SelectedItem="{Binding SelectedGroup.Special}"
+                      DisplayMemberPath="Title">
+            </ComboBox>
+        </StackPanel>
+        <Button Grid.Row="2" Content="Добавить новую группу"
+                Command="{Binding AddGroup}"/>
+        <Button Grid.Row="2" Grid.Column="1" Content=" Сохранить"
+                Command="{Binding SaveGroups}"/>
+    </Grid>
+</Page>
