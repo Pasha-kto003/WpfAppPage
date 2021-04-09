@@ -17,6 +17,8 @@ namespace WpfApp16
         private Student selectedStudent;
         public CustomCommand AddStudent { get; set; }
         public CustomCommand SaveStudents { get; set; }
+        public DateTime Birthday { get; set; }
+
 
         public Student SelectedStudent
         {
@@ -33,7 +35,7 @@ namespace WpfApp16
 
             AddStudent = new CustomCommand(() =>
             {
-                var student = new Student { FirstName = "Имя", LastName = "Фамилия" };
+                var student = new Student { FirstName = "Имя", LastName = "Фамилия"};
                 entities.Students.Add(student);
                 SelectedStudent = student;
                 LoadStudents();

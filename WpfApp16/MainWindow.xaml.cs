@@ -23,7 +23,7 @@ namespace WpfApp16
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new VM();
+            DataContext = new MainVM();
         }
     }
 }

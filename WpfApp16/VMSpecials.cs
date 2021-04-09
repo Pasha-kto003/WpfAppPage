@@ -7,7 +7,7 @@ namespace WpfApp16
 {
     internal class VMSpecials : INotifyPropertyChanged
     {
-        Entities2 Entities2;
+        Entities2 entities2;
         private Special selectedSpecial;
 
         public Special SelectedSpecial { get => selectedSpecial; set { selectedSpecial = value; SignalChanged(); } }
@@ -15,12 +15,14 @@ namespace WpfApp16
 
         public ObservableCollection<Special> Specials { get; set; }
         public VMSpecials()
-        {
-            Entities2 = DB.GetDB();
+        {            
+            entities2 = DB.GetDB();
+            
             LoadSpecials();
+
             AddSpecial = new CustomCommand(() => {
                 SelectedSpecial = new Special { Title = "Название" };
-                Entities2.Specials.Add(SelectedSpecial);
+                entities2.Specials.Add(SelectedSpecial);
             LoadSpecials();
             });
 
@@ -28,7 +30,7 @@ namespace WpfApp16
             {
                 try 
                 {
-                    Entities2.SaveChanges();
+                    entities2.SaveChanges();
                     LoadSpecials();
                 }
                 catch (Exception ex)
@@ -44,7 +46,7 @@ namespace WpfApp16
 
         private void LoadSpecials()
         {
-            Specials = new ObservableCollection<Special>(Entities2.Specials);
+            Specials = new ObservableCollection<Special>(entities2.Specials);
             SignalChanged("Specials");
         }
         void SignalChanged([CallerMemberName] string prop = null)

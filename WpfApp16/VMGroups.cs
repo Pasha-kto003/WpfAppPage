@@ -33,6 +33,7 @@ namespace WpfApp16
         {
             entities = DB.GetDB();
             LoadGroups();
+            Groups = new ObservableCollection<Group>(entities.Groups);
             Specials = new ObservableCollection<Special>(entities.Specials);
 
             AddGroup = new CustomCommand(() =>
